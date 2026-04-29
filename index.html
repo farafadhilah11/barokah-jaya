@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barokah Jaya - Agen Le Minerale Yogyakarta</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  
+  <style>
+    :root {
+      --primary: #0077be;
+      --secondary: #00a86b;
+      --accent: #ffcc00;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary), #005a99);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .navbar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.9rem;
+      font-weight: 700;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(0,119,190,0.9), rgba(0,119,190,0.85)), 
+                  url('https://images.unsplash.com/photo-1600585154340-be6161a56a9c?w=2000') center/cover;
+      color: white;
+      text-align: center;
+      padding: 130px 20px 90px;
+    }
+    
+    .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+    .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto 25px; }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 16px 30px;
+      border: none;
+      background: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 40px;
+      font-size: 2.6rem;
+    }
+    
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,119,190,0.15);
+    }
+    
+    .product-img {
+      height: 240px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #f8f9fa;
+      position: relative;
+    }
+    
+    .product-img::after {
+      content: attr(data-satuan);
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-info h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+    
+    .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .price-old {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 1.05rem;
+      margin-left: 8px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 15px;
+      transition: 0.3s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(255,204,0,0.4);
+    }
+    
+    .rules {
+      background: #f0f8ff;
+      padding: 50px 20px;
+      border-left: 6px solid var(--primary);
+      margin: 60px 0;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      color: white;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 25px rgba(37,211,102,0.5);
+      z-index: 9999;
+      text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.4rem; }
+      .tabs { max-width: 100%; margin: 0 15px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <i class="fas fa-tint"></i>
+        BAROKAH JAYA
+      </div>
+      <div><strong>Agen Le Minerale Resmi</strong></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Barokah Jaya<br>Agen Le Minerale</h1>
+      <p>Harga Grosir Terbaik di Yogyakarta</p>
+      <a href="https://wa.me/6282324794371?text=Halo%20Barokah%20Jaya" class="btn" style="background:white; color:var(--primary); font-size:1.1rem;" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showCategory(0)">Pembelian Satuan</button>
+      <button class="tab-btn" onclick="showCategory(1)">Grosir (Min. 5)</button>
+    </div>
+
+    <div id="satuan" class="products"></div>
+    <div id="grosir" class="products" style="display: none;"></div>
+  </div>
+
+  <!-- RULES -->
+  <section class="rules">
+    <div class="container">
+      <h2>Syarat & Ketentuan</h2>
+      <ul style="list-style:none; max-width:900px; margin:0 auto; font-size:1.05rem;">
+        <li style="padding:12px 0; border-bottom:1px solid #ccc;">Setiap 10 galon 15L wajib bundling 5 dus 1,5L + 5 dus 600ml</li>
+        <li style="padding:12px 0; border-bottom:1px solid #ccc;">Setiap 30 galon 15L wajib bundling 5 dus 1,5L + 5 dus 600ml + 1 dus galon 3L/5L</li>
+        <li style="padding:12px 0;">Gratis ongkir maksimal 2 km dari outlet</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer style="background:#222; color:#ddd; text-align:center; padding:60px 20px;">
+    <h2 style="color:white;">BAROKAH JAYA</h2>
+    <p><strong>Agen Le Minerale Resmi - Yogyakarta</strong></p>
+    <p style="margin:25px 0; font-size:1.35rem;">
+    <p style="margin:20px 0; font-size:1.05rem; line-height:1.7;">
+        Mrisi, RT.11/RW.27, Karangpule, Tirtonirmolo<br>
+        Kec. Kasihan, Kab. Bantul, Yogyakarta
+      </p>
+
+      <p style="margin:15px 0;">
+        <a href="https://maps.app.goo.gl/wMQVi2BaqSdrvQvc6" 
+           target="_blank" 
+           style="color:#4da6ff; text-decoration:none; font-weight:600;">
+          Lihat Lokasi di Google Maps
+        </a>
+      </p>
+      <a href="https://wa.me/6282324794371" style="color:#25D366; text-decoration:none;" target="_blank">
+        <i class="fab fa-whatsapp"></i> 0823-2479-4371
+      </a>
+    </p>
+    <p>&copy; 2026 Barokah Jaya - All Rights Reserved</p>
+  </footer>
+
+  <!-- Floating WA -->
+  <a href="https://wa.me/6282324794371?text=Halo%20Barokah%20Jaya,%20saya%20mau%20pesan%20Le%20Minerale" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    const products = [
+      { 
+        name: "Le Minerale Galon 15 Liter", 
+        satuanPrice: 21000, 
+        grosirPrice: 20000, 
+        unit: "Pcs",
+        image: "images/15l.png"
+      },
+      { 
+        name: "Le Minerale Galon 5 Liter", 
+        satuanPrice: 51000, 
+        grosirPrice: 50000, 
+        unit: "Dus",
+        image: "images/5l.png"
+      },
+      { 
+        name: "Le Minerale Galon 3 Liter", 
+        satuanPrice: 48000, 
+        grosirPrice: 47000, 
+        unit: "Dus",
+        image: "images/3000.png"
+      },
+      { 
+        name: "Le Minerale Botol 1,5 Liter", 
+        satuanPrice: 54000, 
+        grosirPrice: 52000, 
+        unit: "Dus",
+        image: "images/1500.png"
+      },
+      { 
+        name: "Le Minerale Botol 600 ml", 
+        satuanPrice: 49000, 
+        grosirPrice: 47000, 
+        unit: "Dus",
+        image: "images/600.png"
+      },
+      { 
+        name: "Le Minerale Botol 330 ml", 
+        satuanPrice: 39000, 
+        grosirPrice: 36500, 
+        unit: "Dus",
+        image: "images/330.png"
+      }
+    ];
+
+    function createProductCard(product, isGrosir) {
+      const price = isGrosir ? product.grosirPrice : product.satuanPrice;
+      const category = isGrosir ? "Grosir (Min 5)" : "Satuan";
+
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-img" style="background-image: url('${product.image}');" 
+             data-satuan="${product.unit}">
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p style="color:#666; font-size:0.95rem; margin:8px 0;">
+            ${category} • ${product.unit}
+          </p>
+          <p class="price">
+            Rp ${price.toLocaleString('id-ID')}
+            ${isGrosir ? `<span class="price-old">Rp ${product.satuanPrice.toLocaleString('id-ID')}</span>` : ''}
+          </p>
+          <a href="https://wa.me/6282324794371?text=Halo%20Barokah%20Jaya,%20saya%20mau%20pesan%20${encodeURIComponent(product.name)}%20(${category})" 
+             class="btn" target="_blank">
+            Pesan via WhatsApp
+          </a>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderProducts() {
+      const satuanContainer = document.getElementById('satuan');
+      const grosirContainer = document.getElementById('grosir');
+
+      satuanContainer.innerHTML = '';
+      grosirContainer.innerHTML = '';
+
+      products.forEach(product => {
+        satuanContainer.appendChild(createProductCard(product, false));
+        grosirContainer.appendChild(createProductCard(product, true));
+      });
+    }
+
+    function showCategory(category) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-btn')[category].classList.add('active');
+      
+      document.getElementById('satuan').style.display = category === 0 ? 'grid' : 'none';
+      document.getElementById('grosir').style.display = category === 1 ? 'grid' : 'none';
+    }
+
+    // Jalankan saat halaman selesai dimuat
+    window.onload = () => {
+      renderProducts();
+      showCategory(0);   // Default tampil tab Satuan
+    };
+  </script>
+</body>
+</html>
